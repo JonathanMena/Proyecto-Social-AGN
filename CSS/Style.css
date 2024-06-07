@@ -1,0 +1,72 @@
+.navbar-custom {
+  background-color: #0e294b;
+}
+.navbar-custom .container-fluid {
+  padding: 0; /* Elimina el padding predeterminado del contenedor */
+}
+
+.navbar-custom .navbar-nav {
+  width: 100%; /* Establece el ancho máximo para los elementos de la barra de navegación */
+}
+
+.navbar-custom .navbar-nav .nav-item {
+  flex: 1; /* Hace que cada elemento ocupe el mismo espacio disponible */
+  text-align: center; /* Centra el texto dentro de cada elemento */
+}
+
+
+h1 {
+  color: white;
+}
+
+body {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  color: white;
+  background-color: #0e294b;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  width: 100%;
+  clear: both;
+}
+.location-logo {
+  width: 15px; /* Ajusta el tamaño del logo según tus necesidades */
+  height: 15px;
+}
+.location-link {
+  display: inline-block;
+  text-decoration: none; /* Quita el subrayado del enlace */
+}
+
+.content {
+  flex: 1;
+}
+
+.container {
+  overflow: auto;
+}
+
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.col {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.btn-link {
+  cursor: pointer;
+}
+.expedientes-activo {
+  width: 115% !important; /* Ajusta el ancho según sea necesario */
+  padding: 20px !important; /* Más espacio para escribir */
+  max-width: none !important; /* Elimina el límite máximo de ancho */
+}
