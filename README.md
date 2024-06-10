@@ -1,0 +1,1 @@
+Proyecto Social enfocado a la creacion de una pagina web utilizando base de datos, js y php con la funcion de poder ingresar, editar y borrar datos los cuales estan validados por su area y la no repeticion, incluyendo un creador de PDF funcional con los datos que se le ingresen gracias a la libreria  de Fpdf
