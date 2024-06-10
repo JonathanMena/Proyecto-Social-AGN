@@ -123,7 +123,7 @@ function updateDetail() {
                 throw new Error(data.error);
             }
             // Si la consulta devuelve resultados, significa que el código ya está en uso por otro detalle
-            if (data.length > 0) {
+            if (data.exists) {
                 throw new Error('El código ya está siendo utilizado por otro detalle.');
             }
 
@@ -151,7 +151,7 @@ function updateDetail() {
             });
         })
         .catch(error => {
-            alert('Error: Codigo ya ingresado ' + error.message);
+            alert('Error: ' + error.message);
         });
 }
 

@@ -55,6 +55,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['serie_id'])) {
 
     $conn = null;
 
+// Manejar solicitud GET para verificar si el código existe (excluyendo un ID específico)
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['codigo']) && isset($_GET['excludeId'])) {
+    $codigo = $_GET['codigo'];
+    $excludeId = intval($_GET['excludeId']);
+    $conn = getDBConnection($servername, $dbname, $username, $password);
+
+    try {
+        $stmt = $conn->prepare("
+            SELECT COUNT(*) 
+            FROM detalles 
+            WHERE codigo = :codigo AND id != :excludeId
+        ");
+        $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+        $stmt->bindParam(':excludeId', $excludeId, PDO::PARAM_INT);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        echo json_encode(['exists' => $count > 0]);
+
+    } catch(PDOException $e) {
+        echo json_encode(['error' => 'Error: ' . $e->getMessage()]);
+    }
+
+    $conn = null;
+
 // Manejar solicitud POST para insertar nuevos detalles
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = getDBConnection($servername, $dbname, $username, $password);
@@ -102,6 +127,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['serie_id'])) {
         $codigo = $data['codigo'];
 
         try {
+            // Validar que el código no esté duplicado
+            $stmt = $conn->prepare("
+                SELECT COUNT(*) 
+                FROM detalles 
+                WHERE codigo = :codigo AND id != :id
+            ");
+            $stmt->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                echo json_encode(['error' => 'El código ya está siendo utilizado por otro detalle.']);
+                $conn = null;
+                exit();
+            }
+
             // Actualizar detalle existente
             $stmt = $conn->prepare("
                 UPDATE detalles 
