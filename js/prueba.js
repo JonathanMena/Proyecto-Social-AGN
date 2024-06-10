@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.add('active');
       });
     });
-  });
+});
 
 function mostrarInformacion(info) {
     var element = document.getElementById("info-" + info);
