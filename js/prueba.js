@@ -236,6 +236,16 @@ document.querySelector('memo').addEventListener('submit', function(event) {
 
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => {
+      box.addEventListener('click', function() {
+        boxes.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  });
+
 function mostrarInformacion(info) {
     var element = document.getElementById("info-" + info);
     var elements = document.querySelectorAll('[id^="info-"]');

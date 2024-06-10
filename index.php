@@ -77,7 +77,7 @@
     <div id="info-direccion" style="display: none">
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-1">
               <h4>Correspondencia</h4>A106.1.1-01
             </button>
@@ -87,7 +87,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-2" class="btn text-dark mb-3">
               <h4>Informes y Proyectos</h4>A106.1.1-02
             </button>
@@ -97,7 +97,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-3" class="btn text-dark">
               <h4>Normativa</h4>A106.1.1-03
             </button>
@@ -107,7 +107,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-4" class="btn text-dark">
               <h4>Servicios Archivisticos</h4>A106.1.1-04
             </button>
@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="col-md-12 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-5" class="btn text-dark">
               <h4>Expedientes de Procesos administrativos</h4>A106.1.1-05
             </button>
@@ -131,7 +131,7 @@
     <div id="info-departamento" style="display: none">
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-6">
               <h4>Expediente comisión Técnica</h4>A106.1.2-01
             </button>
@@ -141,7 +141,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-7" class="btn text-dark">
               <h4>Descripción Archivística</h4>A106.1.2-02
             </button>
@@ -151,7 +151,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-8">
               <h4>Correspondencia</h4>A106.1.2-03
             </button>
@@ -161,7 +161,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-9">
               <h4>Expediente Investigación Institucional: <br>Historica y Documental</h4>A106.1.2-04
             </button>
@@ -171,7 +171,7 @@
           </div>
         </div>
         <div class="col-md-12 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-10" class="btn text-dark">
               <h4>Expedientes de formación y Capacitación externa</h4>A106.1.2-05
             </button>
@@ -185,7 +185,7 @@
     <div id="info-admo" style="display: none">
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-11">
               <h4>Correspondencia</h4>A106.1.3-01
             </button>
@@ -195,7 +195,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-12" class="btn text-dark">
               <h4>Expedientes de procesos<br />administrativos</h4>A106.1.3-02
             </button>
@@ -209,7 +209,7 @@
     <div id="info-preservación" style="display: none">
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-13">
               <h4>Correspondencia</h4>A106.1.4-01
             </button>
@@ -219,7 +219,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-14" class="btn text-dark">
               <h4>Expediente de conservación y Restauración</h4>A106.1.4-02
             </button>
@@ -229,7 +229,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-15">
               <h4>Expediente de Digitalización</h4>A106.1.4-03
             </button>
@@ -239,7 +239,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-16">
               <h4>Expediente de formación y capacitación externa</h4>A106.1.4-04
             </button>
@@ -253,7 +253,7 @@
     <div id="info-biblioteca" style="display: none">
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-17">
               <h4>Correspondencia</h4>A106.1.5-01
             </button>
@@ -263,7 +263,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-18" class="btn text-dark">
               <h4>Expedientes de formación<br>y capacitación externa</h4>A106.1.5-02
             </button>
@@ -277,7 +277,7 @@
     <div id="info-atención" style="display: none">
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button class="btn text-dark mb-3" id="btn-19">
               <h4>Correspondencia</h4>A106.1.6-01
             </button>
@@ -287,7 +287,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-20" class="btn text-dark">
               <h4>Expedientes estadistico</h4>A106.1.6-02
             </button>
@@ -297,7 +297,7 @@
           </div>
         </div>
         <div class="col-md-12 mb-4">
-          <div class="text-center">
+          <div class="text-center box">
             <button id="btn-21" class="btn text-dark">
               <h4>Expediente de Formación y capacitación externa</h4>A106.1.6-03
             </button>
@@ -354,8 +354,8 @@
         </form>
         <div id="response-message" class="mt-3"></div>
       </div>
-
-    </div>    <div id="info-formularios 2" style="display: none">
+    </div>
+      <div id="info-formularios 2" style="display: none">
       <iframe src="FORM MOV BIENES 2024 (2).pdf" width="100%" height="850px"></iframe>
     </div>
 
