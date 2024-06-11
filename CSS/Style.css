@@ -36,8 +36,8 @@ body {
   clear: both;
 }
 .location-logo {
-  width: 15px; /* Ajusta el tamaño del logo según tus necesidades */
-  height: 15px;
+  width: 25px; /* Ajusta el tamaño del logo según tus necesidades */
+  height: 25px;
 }
 .location-link {
   display: inline-block;
