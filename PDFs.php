@@ -86,6 +86,8 @@ $result = $conn->query($sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visualiza PDFs en el AGN. Accede y maneja documentos digitalizados de manera sencilla y eficiente con nuestras herramientas avanzadas. Creado por [Calvin Mena].">
+  <meta name="keywords" content="AGN Visualizar PDFs, documentos digitalizados, herramientas avanzadas">
   <title>PDFs</title>
   <link rel="stylesheet" href="CSS/Style.css" />
    <!-- Bootstrap CSS -->
