@@ -104,11 +104,33 @@ function showEditModal(id, descripcion, codigo) {
     document.getElementById('editCodigo').value = codigo;
     document.getElementById('editModal').style.display = 'block';
 }
-
 function updateDetail() {
     const id = document.getElementById('editId').value;
     const descripcion = document.getElementById('editDescripcion').value;
     const codigo = document.getElementById('editCodigo').value;
+    const allowedCodes = [
+        "A106.1.1-",
+        "A106.1.2-",
+        "A106.1.3-",
+        "A106.1.4-",
+        "A106.1.5-",
+        "A106.1.6-"
+    ];
+
+    // Verificar si el prefijo del código ingresado coincide con alguno de los códigos permitidos
+    let isValidCode = false;
+    for (let i = 0; i < allowedCodes.length; i++) {
+        if (codigo.startsWith(allowedCodes[i])) {
+            isValidCode = true;
+            break;
+        }
+    }
+
+    // Si el código no es válido, mostrar un mensaje de error y salir
+    if (!isValidCode) {
+        alert("Código no válido. Por favor, ingresa un código permitido.");
+        return;
+    }
 
     // Realizar la validación del código antes de actualizar en la base de datos
     fetch(`bd.php?codigo=${codigo}&excludeId=${id}`)
@@ -144,7 +166,7 @@ function updateDetail() {
             .then(data => {
                 alert(data.success || data.error);
                 document.getElementById('editModal').style.display = 'none';
-                fetchSeries();
+                fetchSeries(); // Asegúrate de tener esta función definida en algún lugar
             })
             .catch(error => {
                 alert('Error: ' + error.message);
