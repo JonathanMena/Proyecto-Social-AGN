@@ -4,6 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "archivo_general";
 
+$message = ""; // Variable para almacenar mensajes
+
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -11,8 +13,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
-
-$message = ""; // Variable para almacenar mensajes
 
 // Manejar la eliminación de PDF
 if (isset($_GET['delete_id'])) {
@@ -23,10 +23,11 @@ if (isset($_GET['delete_id'])) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($filePath);
-    $stmt->fetch();
     
     if ($stmt->num_rows == 1) {
+        $stmt->bind_result($filePath); // Asignar el resultado a $filePath
+        $stmt->fetch(); // Obtener el valor
+        
         // Eliminar el archivo del servidor
         if (unlink($filePath)) {
             // Si se elimina correctamente, eliminar el registro de la base de datos
@@ -198,5 +199,6 @@ $result = $conn->query($sql);
 </html>
 
 <?php
+// Cerrar conexión
 $conn->close();
 ?>
