@@ -16,94 +16,128 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Mostrar solo el contenedor correspondiente al botón actual
             const container = document.getElementById(containerId);
-            container.style.display = 'block';
+            if (container) {
+                container.style.display = 'block';
 
-            // Realizar la solicitud Fetch
-            fetch(`bd.php?serie_id=${serieId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Procesar la respuesta JSON
-                const container = document.getElementById(containerId);
-                container.innerHTML = ''; // Limpiar el contenedor
+                // Realizar la solicitud Fetch
+                fetch(`bd.php?serie_id=${serieId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Procesar la respuesta JSON
+                    container.innerHTML = ''; // Limpiar el contenedor
 
-                if (data.error) {
-                    console.error(data.error);
-                } else {
-                    data.forEach(serie => {
-                        const card = document.createElement('div');
-                        card.className = 'card mt-2';
+                    if (data.error) {
+                        console.error(data.error);
+                    } else {
+                        data.forEach(serie => {
+                            const card = document.createElement('div');
+                            card.className = 'card mt-2';
 
-                        const cardBody = document.createElement('div');
-                        cardBody.className = 'card-body';
-                        cardBody.innerHTML = `
-                            <p>${serie.descripcion}</p>
-                            <p>Código: ${serie.codigo}</p>
-                            <button onclick="showEditModal(${serie.id}, ${serie.serie_id}, '${serie.descripcion}', '${serie.codigo}')">Editar</button>
-                            <button onclick="deleteDetail(${serie.id}, ${serie.serie_id})">Borrar</button>
-                        `;
+                            const cardBody = document.createElement('div');
+                            cardBody.className = 'card-body';
+                            cardBody.innerHTML = `
+                                <p>${serie.descripcion}</p>
+                                <p>Código: ${serie.codigo}</p>
+                                <button onclick="showEditModal(${serie.id}, '${serie.descripcion}', '${serie.codigo}')">Editar</button>
+                                <button onclick="deleteDetail(${serie.id}, ${serie.serie_id})">Borrar</button>
+                            `;
 
-                        card.appendChild(cardBody);
-                        container.appendChild(card);
-                    });
-                }
-            })
-            .catch(error => console.error('Error:', error));
+                            card.appendChild(cardBody);
+                            container.appendChild(card);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
         });
     });
 
     const form = document.getElementById('detalle-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const formData = new FormData(form);
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        fetch('insertar.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            const responseMessage = document.getElementById('response-message');
-            if (data.error) {
-                responseMessage.textContent = data.error;
-                responseMessage.classList.add('text-danger');
-            } else {
-                responseMessage.textContent = 'Datos insertados correctamente';
-                responseMessage.classList.add('text-success');
-                form.reset();
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+            const formData = new FormData(form);
 
-    // Ajustar el footer
+            fetch('insertar.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const responseMessage = document.getElementById('response-message');
+                if (responseMessage) {
+                    if (data.error) {
+                        responseMessage.textContent = data.error;
+                        responseMessage.classList.add('text-danger');
+                    } else {
+                        responseMessage.textContent = 'Datos insertados correctamente';
+                        responseMessage.classList.add('text-success');
+                        form.reset();
+                    }
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+
     window.addEventListener('resize', ajustarFooter);
-    document.addEventListener('DOMContentLoaded', ajustarFooter);
+
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => {
+        // Crear el botón de cierre
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Cerrar';
+        closeButton.classList.add('close-button');
+        box.appendChild(closeButton);
+
+        // Agregar evento click al botón de cierre
+        closeButton.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevenir que el click en el botón active el evento del box
+            box.classList.remove('active');
+        });
+
+        // Agregar evento click a la caja
+        box.addEventListener('click', function() {
+            boxes.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 });
 
 function ajustarFooter() {
-    var footer = document.querySelector('.footer');
-    var bodyHeight = document.body.offsetHeight;
-    var windowHeight = window.innerHeight;
-    if (bodyHeight < windowHeight) {
-        footer.style.position = 'absolute';
-        footer.style.bottom = '0';
-    } else {
-        footer.style.position = 'relative';
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const bodyHeight = document.body.offsetHeight;
+        const windowHeight = window.innerHeight;
+        if (bodyHeight < windowHeight) {
+            footer.style.position = 'absolute';
+            footer.style.bottom = '0';
+        } else {
+            footer.style.position = 'relative';
+        }
     }
 }
 
 function showEditModal(id, descripcion, codigo) {
-    document.getElementById('editId').value = id;
-    document.getElementById('editDescripcion').value = descripcion;
-    document.getElementById('editCodigo').value = codigo;
-    document.getElementById('editModal').style.display = 'block';
+    const editId = document.getElementById('editId');
+    const editDescripcion = document.getElementById('editDescripcion');
+    const editCodigo = document.getElementById('editCodigo');
+    const editModal = document.getElementById('editModal');
+
+    if (editId && editDescripcion && editCodigo && editModal) {
+        editId.value = id;
+        editDescripcion.value = descripcion;
+        editCodigo.value = codigo;
+        editModal.style.display = 'block';
+    }
 }
+
 function updateDetail() {
     const id = document.getElementById('editId').value;
     const descripcion = document.getElementById('editDescripcion').value;
@@ -165,8 +199,11 @@ function updateDetail() {
             })
             .then(data => {
                 alert(data.success || data.error);
-                document.getElementById('editModal').style.display = 'none';
-                fetchSeries(); // Asegúrate de tener esta función definida en algún lugar
+                const editModal = document.getElementById('editModal');
+                if (editModal) {
+                    editModal.style.display = 'none';
+                }
+                fetchSeries();
             })
             .catch(error => {
                 alert('Error: ' + error.message);
@@ -212,61 +249,41 @@ function fetchSeries() {
         })
         .then(data => {
             const serieList = document.getElementById('serieList');
-            serieList.innerHTML = '';
+            if (serieList) {
+                serieList.innerHTML = '';
 
-            data.forEach(serie => {
-                const serieDiv = document.createElement('div');
-                serieDiv.innerHTML = `
-                    <p>ID: ${serie.id}</p>
-                    <p>Nombre: ${serie.nombre}</p>
-                    <p>Descripción: ${serie.descripcion}</p>
-                    <p>Código: ${serie.codigo}</p>
-                    <button onclick="showEditModal(${serie.id}, ${serie.serie_id}, '${serie.descripcion}', '${serie.codigo}')">Editar</button>
-                    <button onclick="deleteDetail(${serie.id}, ${serie.serie_id})">Borrar</button>
-                `;
-               
-                serieList.appendChild(serieDiv);
-            });
+                data.forEach(serie => {
+                    const serieDiv = document.createElement('div');
+                    serieDiv.innerHTML = `
+                        <p>ID: ${serie.id}</p>
+                        <p>Nombre: ${serie.nombre}</p>
+                        <p>Descripción: ${serie.descripcion}</p>
+                        <p>Código: ${serie.codigo}</p>
+                        <button onclick="showEditModal(${serie.id}, '${serie.descripcion}', '${serie.codigo}')">Editar</button>
+                        <button onclick="deleteDetail(${serie.id}, ${serie.serie_id})">Borrar</button>
+                    `;
+
+                    serieList.appendChild(serieDiv);
+                });
+            }
         })
         .catch(error => console.error('Error:', error));
 }
 
-document.getElementById('detalle-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    fetch('api.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('response-message').textContent = data.success ? 'Información añadida con éxito' : 'Error: ' + data.error;
-    })
-    .catch(error => {
-        document.getElementById('response-message').textContent = 'Error: ' + error.message;
+const memoForm = document.querySelector('memo');
+if (memoForm) {
+    memoForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar el envío normal del formulario
+
+        // Obtener los datos del formulario
+        const formData = new FormData(document.querySelector('.form'));
+
+        // Construir la URL con los datos del formulario
+        const queryParams = new URLSearchParams(formData).toString();
+
+        // Ejecutar la lógica deseada con queryParams
     });
-});
-
-document.querySelector('memo').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evitar el envío normal del formulario
-
-    // Obtener los datos del formulario
-    const formData = new FormData(document.querySelector('.form'));
-
-    // Construir la URL con los datos del formulario
-    const queryParams = new URLSearchParams(formData).toString();
-
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const boxes = document.querySelectorAll('.box');
-    boxes.forEach(box => {
-      box.addEventListener('click', function() {
-        boxes.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-});
+}
 
 function mostrarInformacion(info) {
     var element = document.getElementById("info-" + info);
