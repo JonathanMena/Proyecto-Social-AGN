@@ -1,6 +1,7 @@
 .navbar-custom {
   background-color: #0e294b;
 }
+
 .navbar-custom .container-fluid {
   padding: 0; /* Elimina el padding predeterminado del contenedor */
 }
@@ -34,10 +35,12 @@ body {
   width: 100%;
   clear: both;
 }
+
 .location-logo {
   width: 25px; /* Ajusta el tamaño del logo según tus necesidades */
   height: 25px;
 }
+
 .location-link {
   display: inline-block;
   text-decoration: none; /* Quita el subrayado del enlace */
@@ -64,6 +67,7 @@ body {
 .btn-link {
   cursor: pointer;
 }
+
 .expedientes-activo {
   width: 115% !important; /* Ajusta el ancho según sea necesario */
   padding: 20px !important; /* Más espacio para escribir */
@@ -73,22 +77,23 @@ body {
 .box {
   border: 1px solid #000;
   margin: 10px;
+  transition: all 0.3s ease; /* Transición suave */
 }
+
 .box.active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombreado */
-  /* O */
   border: 2px solid red; /* Borde resaltado */
-}
-.box.active {
   position: fixed;
-  left: 0;
-  right:0;
-  width: 99%;
-  height: 57%;
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Ancho relativo al contenedor padre */
+  max-height: 80%; /* Altura máxima relativa al contenedor padre */
   overflow-y: auto; /* Agrega desplazamiento vertical si es necesario */
-  border: 2px solid red; /* Borde resaltado rojo */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  z-index: 1000; /* Asegura que la caja esté encima de otros elementos */
 }
+
 
 #editModal {
   display: none;

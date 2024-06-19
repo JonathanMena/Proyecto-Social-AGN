@@ -95,11 +95,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Si la caja ya tiene la clase 'active', la elimina
             if (this.classList.contains('active')) {
                 this.classList.remove('active');
+                this.style.height = ''; // Restablecer la altura
             } else {
                 // Si no, elimina 'active' de todas las cajas y la añade a la caja actual
-                boxes.forEach(b => b.classList.remove('active'));
+                boxes.forEach(b => {
+                    b.classList.remove('active');
+                    b.style.height = ''; // Restablecer la altura de todas las cajas
+                });
                 this.classList.add('active');
+                this.style.height = '500px'; // Ajustar la altura según sea necesario
             }
+            ajustarFooter();
         });
     });     
 });
