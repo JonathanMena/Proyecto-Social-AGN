@@ -89,18 +89,6 @@ body {
   overflow-y: auto; /* Agrega desplazamiento vertical si es necesario */
   border: 2px solid red; /* Borde resaltado rojo */
 }
-.close-button {
-  background-color: rgb(107, 165, 231);
-  color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 10;
-}
 
 #editModal {
   display: none;
