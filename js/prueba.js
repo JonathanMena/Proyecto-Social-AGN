@@ -90,24 +90,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const boxes = document.querySelectorAll('.box');
     boxes.forEach(box => {
-        // Crear el botón de cierre
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'Cerrar';
-        closeButton.classList.add('close-button');
-        box.appendChild(closeButton);
-
-        // Agregar evento click al botón de cierre
-        closeButton.addEventListener('click', function(event) {
-            event.stopPropagation(); // Prevenir que el click en el botón active el evento del box
-            box.classList.remove('active');
-        });
-
         // Agregar evento click a la caja
         box.addEventListener('click', function() {
-            boxes.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+            // Si la caja ya tiene la clase 'active', la elimina
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+            } else {
+                // Si no, elimina 'active' de todas las cajas y la añade a la caja actual
+                boxes.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            }
         });
-    });
+    });     
 });
 
 function ajustarFooter() {
@@ -296,7 +290,7 @@ function mostrarInformacion(info) {
     });
 
     if (element) {
-        if (element.style.display === "none") {
+        if (element.style.display === "none" || element.style.display === "") {
             element.style.display = "block";
         } else {
             element.style.display = "none";
