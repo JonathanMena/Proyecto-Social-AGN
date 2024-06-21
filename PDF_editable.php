@@ -84,7 +84,7 @@ $pdf->SetLeftMargin(30);
 $pdf->Ln(20);
 $pdf->MultiCell(0, 7, mb_convert_encoding('Mensaje: '.$mensaje.'.' , 'ISO-8859-1', 'UTF-8'));
 $pdf->Ln(3);
-$pdf->MultiCell(0, 7, mb_convert_encoding('Atentamente,', 'ISO-8859-1', 'UTF-8'));
+$pdf->MultiCell(0, 7, mb_convert_encoding('Atentamente, '.$remitente, 'ISO-8859-1', 'UTF-8'));
 
 $pdf->Output();
 }
