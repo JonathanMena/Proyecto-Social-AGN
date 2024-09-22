@@ -60,7 +60,7 @@ $pdf->setfont('BemboStd-Bold.ttf', '', 17);
 $pdf->Cell(185, 0, "MEMORANDUM", 0, 0, 'C');
 $pdf->Ln(5);
 $pdf->SetLeftMargin(92);
-$pdf->setfont('MuseoSans_500.ttf', '', 14);
+$pdf->setfont('MuseoSans_500.ttf', '', 12);
 $pdf->Ln(5);
 $pdf->MultiCell(0, 7, mb_convert_encoding('A.106.1.'.$relativo , 'ISO-8859-1', 'UTF-8'));
 $pdf->Ln(5);

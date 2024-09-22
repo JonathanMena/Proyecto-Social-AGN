@@ -20,50 +20,52 @@ function getDBConnection($servername, $dbname, $username, $password) {
 
 // Función para validar el código
 function isValidCode($serie_id, $codigo) {
+    $mes = date('m'); // Obtiene el mes actual (puedes cambiarlo si es necesario)
+    $año = date('Y'); // Obtiene el año actual (puedes cambiarlo si es necesario)
     switch ($serie_id) {
         case 1:
-            return preg_match('/^A106\.1\.1\-01-\d{2}$/', $codigo);
+            return preg_match('/^A\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 2:
-            return preg_match('/^A106\.1\.1\-02-\d{2}$/', $codigo);
+            return preg_match('/^B\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 3:
-            return preg_match('/^A106\.1\.1\-03-\d{2}$/', $codigo);
+            return preg_match('/^C\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 4:
-            return preg_match('/^A106\.1\.1\-04-\d{2}$/', $codigo);
+            return preg_match('/^D\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 5:
-            return preg_match('/^A106\.1\.1\-05-\d{2}$/', $codigo);
+            return preg_match('/^E\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 6:
-            return preg_match('/^A106\.1\.2\-01-\d{2}$/', $codigo);
+            return preg_match('/^F\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 7:
-            return preg_match('/^A106\.1\.2\-02-\d{2}$/', $codigo);
+            return preg_match('/^G\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 8:
-            return preg_match('/^A106\.1\.2\-03-\d{2}$/', $codigo);
+            return preg_match('/^H\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 9:
-            return preg_match('/^A106\.1\.2\-04-\d{2}$/', $codigo);
+            return preg_match('/^I\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 10:
-            return preg_match('/^A106\.1\.2\-05-\d{2}$/', $codigo);
+            return preg_match('/^J\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 11:
-            return preg_match('/^A106\.1\.3\-01-\d{2}$/', $codigo);
+            return preg_match('/^K\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 12:
-            return preg_match('/^A106\.1\.3\-02-\d{2}$/', $codigo);
+            return preg_match('/^L\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 13:
-            return preg_match('/^A106\.1\.4\-01-\d{2}$/', $codigo);
+            return preg_match('/^M\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 14:
-            return preg_match('/^A106\.1\.4\-02-\d{2}$/', $codigo);
+            return preg_match('/^N\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 15:
-            return preg_match('/^A106\.1\.4\-03-\d{2}$/', $codigo);
+            return preg_match('/^O\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 16:
-            return preg_match('/^A106\.1\.4\-04-\d{2}$/', $codigo);
+            return preg_match('/^P\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 17:
-            return preg_match('/^A106\.1\.5\-01-\d{2}$/', $codigo);
+            return preg_match('/^Q\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 18:
-            return preg_match('/^A106\.1\.5\-02-\d{2}$/', $codigo);
+            return preg_match('/^R\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 19:
-            return preg_match('/^A106\.1\.6\-01-\d{2}$/', $codigo);
+            return preg_match('/^S\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 20:
-            return preg_match('/^A106\.1\.6\-02-\d{2}$/', $codigo);
+            return preg_match('/^T\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
         case 21:
-            return preg_match('/^A106\.1\.6\-03-\d{2}$/', $codigo);
-        default:
+            return preg_match('/^U\d{1}\-'. $mes .'\-' . $año . '$/', $codigo);
+            default:
             return false;
     }
 }

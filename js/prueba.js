@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             cardBody.className = 'card-body';
                             cardBody.innerHTML = `
                                 <p>${serie.descripcion}</p>
-                                <p>Código: ${serie.codigo}</p>
+                                <p>Referencia: ${serie.codigo}</p>
                                 <button onclick="showEditModal(${serie.id}, '${serie.descripcion}', '${serie.codigo}')">Editar</button>
                                 <button onclick="deleteDetail(${serie.id}, ${serie.serie_id})">Borrar</button>
                             `;
@@ -142,76 +142,56 @@ function updateDetail() {
     const id = document.getElementById('editId').value;
     const descripcion = document.getElementById('editDescripcion').value;
     const codigo = document.getElementById('editCodigo').value;
-    const allowedCodes = [
-        "A106.1.1-",
-        "A106.1.2-",
-        "A106.1.3-",
-        "A106.1.4-",
-        "A106.1.5-",
-        "A106.1.6-"
-    ];
 
-    // Verificar si el prefijo del código ingresado coincide con alguno de los códigos permitidos
-    let isValidCode = false;
-    for (let i = 0; i < allowedCodes.length; i++) {
-        if (codigo.startsWith(allowedCodes[i])) {
-            isValidCode = true;
-            break;
-        }
-    }
-
-    // Si el código no es válido, mostrar un mensaje de error y salir
-    if (!isValidCode) {
-        alert("Código no válido. Por favor, ingresa un código permitido.");
+    // Verificar que los campos no estén vacíos
+    if (!descripcion.trim() || !codigo.trim()) {
+        alert('Por favor, completa todos los campos antes de guardar.');
         return;
     }
 
-    // Realizar la validación del código antes de actualizar en la base de datos
-    fetch(`bd.php?codigo=${codigo}&excludeId=${id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.error) {
-                throw new Error(data.error);
-            }
-            // Si la consulta devuelve resultados, significa que el código ya está en uso por otro detalle
-            if (data.exists) {
-                throw new Error('El código ya está siendo utilizado por otro detalle.');
-            }
+    // Crear la expresión regular para validar el formato del código
+    const regex = /^[A-U]\d+-(\d{1,2})-(\d{4})$/; // A a V - uno o más dígitos - mes (1 o 2 dígitos) - año (4 dígitos)
 
-            // Si la validación pasa, procedemos a actualizar el detalle en la base de datos
-            fetch('bd.php', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id, descripcion, codigo })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text) });
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert(data.success || data.error);
-                const editModal = document.getElementById('editModal');
-                if (editModal) {
-                    editModal.style.display = 'none';
-                }
-                fetchSeries();
-            })
-            .catch(error => {
-                alert('Error: ' + error.message);
-            });
-        })
-        .catch(error => {
-            alert('Error: ' + error.message);
-        });
+    // Verificar si el formato del código es válido
+    const match = codigo.match(regex);
+    if (!match) {
+        alert('Código no válido. El formato debe ser A-V1 o más dígitos-mes-año, por ejemplo: A1-09-2024 o B10-5-2024');
+        return;
+    }
+
+    const mes = parseInt(match[1], 10); // Extraer el mes del código
+
+    // Validar que el mes esté entre 1 y 12
+    if (mes < 1 || mes > 12) {
+        alert('Mes no válido. Debe estar entre 1 y 12.');
+        return;
+    }
+
+    // Aquí puedes agregar la lógica para realizar la actualización
+    fetch('bd.php', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id, descripcion, codigo })
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(text) });
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.success || data.error);
+        const editModal = document.getElementById('editModal');
+        if (editModal) {
+            editModal.style.display = 'none';
+        }
+        fetchSeries(); // Actualizar la lista después de editar
+    })
+    .catch(error => {
+        alert('Error: ' + error.message);
+    });
 }
 
 function deleteDetail(id, serieId) {
@@ -258,7 +238,7 @@ function fetchSeries() {
                         <p>ID: ${serie.id}</p>
                         <p>Nombre: ${serie.nombre}</p>
                         <p>Descripción: ${serie.descripcion}</p>
-                        <p>Código: ${serie.codigo}</p>
+                        <p>Referencia: ${serie.codigo}</p>
                         <button onclick="showEditModal(${serie.id}, '${serie.descripcion}', '${serie.codigo}')">Editar</button>
                         <button onclick="deleteDetail(${serie.id}, ${serie.serie_id})">Borrar</button>
                     `;

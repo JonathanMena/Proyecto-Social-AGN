@@ -66,7 +66,6 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item"  onclick="mostrarInformacion('formularios 1')" >Form Añadir a BD</a></li>
                 <li><a class="dropdown-item" href="PDFs.php">Formularios Varios</a></li>
-                <li><a class="dropdown-item" onclick="mostrarInformacion('formularios 3')">Form de Memorandum</a></li>
                 <!-- Agrega más elementos de menú según tus necesidades -->
               </ul>
             </li>
@@ -80,7 +79,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button class="btn text-dark mb-3" id="btn-1">
+            <button class="btn text-dark mb-4" id="btn-1">
               <h4>Correspondencia</h4>A106.1.1-01
             </button>
             <div class="container mt-4">
@@ -90,7 +89,7 @@
         </div>
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button id="btn-2" class="btn text-dark mb-3">
+            <button id="btn-2" class="btn text-dark">
               <h4>Informes y Proyectos</h4>A106.1.1-02
             </button>
             <div class="container mt-4">
@@ -134,7 +133,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button class="btn text-dark mb-3" id="btn-6">
+            <button class="btn text-dark mb-4" id="btn-6">
               <h4>Expediente comisión Técnica</h4>A106.1.2-01
             </button>
             <div class="container mt-4">
@@ -154,7 +153,7 @@
         </div>
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button class="btn text-dark mb-3" id="btn-8">
+            <button class="btn text-dark mb-4" id="btn-8">
               <h4>Correspondencia</h4>A106.1.2-03
             </button>
             <div class="container mt-4">
@@ -164,8 +163,8 @@
         </div>
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button class="btn text-dark mb-3" id="btn-9">
-              <h4>Expediente Investigación Institucional: <br>Historica y Documental</h4>A106.1.2-04
+            <button class="btn text-dark" id="btn-9">
+              <h4>Expediente Investigación Institucional<br>Historica y Documental</h4>A106.1.2-04
             </button>
             <div class="container mt-4">
               <div id="serie-documental-container-9"></div>
@@ -188,7 +187,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button class="btn text-dark mb-3" id="btn-11">
+            <button class="btn text-dark mb-5" id="btn-11">
               <h4>Correspondencia</h4>A106.1.3-01
             </button>
             <div class="container mt-4">
@@ -256,7 +255,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
           <div class="text-center box">
-            <button class="btn text-dark mb-3" id="btn-17">
+            <button class="btn text-dark mb-5" id="btn-17">
               <h4>Correspondencia</h4>A106.1.5-01
             </button>
             <div class="container mt-4">
@@ -347,7 +346,7 @@
             <textarea class="form-control" id="descripcion" name="descripcion" required placeholder="Descripción breve"></textarea>
           </div>
           <div class="mb-3">
-            <label for="codigo" class="form-label">Código</label>
+            <label for="codigo" class="form-label">Referencia</label>
             <input type="text" class="form-control" id="codigo" name="codigo" required />
           </div>
           <button type="submit" class="btn btn-primary">Añadir</button>
@@ -357,8 +356,8 @@
     </div>
 
     <div id="info-formularios 3" style="display:none">
-    <div class="text-center">
-    <form id="memo" class="form" name="pdf" action="PDF_editable.php" method="POST">
+      <div class="text-center">
+        <form id="memo" class="form" name="pdf" action="PDF_editable.php" method="POST">
             <div class="form-group">
                 <label for="relativo" class="label">Codigo</label>
                 <input type="text" class="input" name="relativo" id="relativo" required>
@@ -387,14 +386,15 @@
                 <button class="button" type="submit">Confirmar</button>
             </div>
         </form>
+      </div>
     </div>
-    </div>
+  </div>
 <!-- Modal para editar detalles -->
 <div id="editModal" style="display:none;">
   <input type="hidden" id="editId">
   <label for="editDescripcion">Descripción:</label>
   <input type="text" id="editDescripcion">
-  <label for="editCodigo">Código:</label>
+  <label for="editCodigo">Referencia:</label>
   <input type="text" id="editCodigo">
   <button onclick="updateDetail()">Guardar Cambios</button>
   <button onclick="document.getElementById('editModal').style.display='none'">Cancelar</button>
@@ -407,87 +407,87 @@
           const codigoInput = document.getElementById("codigo");
           switch (serieId) {
             case "1":
-              codigoInput.value = "A106.1.1-01-";
+              codigoInput.value = "A#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "2":
-              codigoInput.value = "A106.1.1-02-";
+              codigoInput.value = "B#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "3":
-              codigoInput.value = "A106.1.1-03-";
+              codigoInput.value = "C#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "4":
-              codigoInput.value = "A106.1.1-04-";
+              codigoInput.value = "D#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "5":
-              codigoInput.value = "A106.1.1-05-";
+              codigoInput.value = "E#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "6":
-              codigoInput.value = "A106.1.2-01-";
+              codigoInput.value = "F#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "7":
-              codigoInput.value = "A106.1.2-02-";
+              codigoInput.value = "G#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "8":
-              codigoInput.value = "A106.1.2-03-";
+              codigoInput.value = "H#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "9":
-              codigoInput.value = "A106.1.2-04-";
+              codigoInput.value = "I#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "10":
-              codigoInput.value = "A106.1.2-05-";
+              codigoInput.value = "J#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "11":
-              codigoInput.value = "A106.1.3-01-";
+              codigoInput.value = "K#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "12":
-              codigoInput.value = "A106.1.3-02-";
+              codigoInput.value = "L#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "13":
-              codigoInput.value = "A106.1.4-01-";
+              codigoInput.value = "M#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "14":
-              codigoInput.value = "A106.1.4-02-";
+              codigoInput.value = "N#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "15":
-              codigoInput.value = "A106.1.4-03-";
+              codigoInput.value = "O#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "16":
-              codigoInput.value = "A106.1.4-04-";
+              codigoInput.value = "P#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "17":
-              codigoInput.value = "A106.1.5-01-";
+              codigoInput.value = "Q#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "18":
-              codigoInput.value = "A106.1.5-02-";
+              codigoInput.value = "R#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "19":
-              codigoInput.value = "A106.1.6-01-";
+              codigoInput.value = "S#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "20":
-              codigoInput.value = "A106.1.6-02-";
+              codigoInput.value = "T#-0#-202#";
               codigoInput.readOnly = false;
               break;
             case "21":
-              codigoInput.value = "A106.1.6-03-";
+              codigoInput.value = "U#-0#-202#";
               codigoInput.readOnly = false;
               break;
           }
