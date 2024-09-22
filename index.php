@@ -1,6 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedIn'])) {
+    // Si no está logueado, redirigir al login
+    header('Location: login.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="description" content="Bienvenido al Archivo General de la Nación (AGN). Almacena y gestiona documentos históricos y administrativos con nuestras herramientas avanzadas, incluyendo un editor de PDFs y una base de datos accesible. Creado por Calvin Mena.">
@@ -24,7 +32,10 @@
         <div class="col-md-6 text-center">
           <a href=".">
             <img src="img/Logo AGN blanco.png" alt="Logo" class="img-fluid" style="max-width: 250px" />
-          </a>
+          </a>  <!-- Botón para cerrar sesión -->
+  <form action="logout.php" method="post">
+    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+    </form>
         </div>
         <div class="col-md-12 text-center">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-around">
