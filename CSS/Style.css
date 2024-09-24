@@ -11,8 +11,9 @@
 }
 
 .navbar-custom .navbar-nav .nav-item {
-  flex: 1; /* Hace que cada elemento ocupe el mismo espacio disponible */
+  /* flex: 1;  REMOVIDO */
   text-align: center; /* Centra el texto dentro de cada elemento */
+  padding: 0 15px; /* Añade espacio alrededor de cada botón */
 }
 
 h1 {
@@ -94,6 +95,13 @@ body {
   z-index: 1000; /* Asegura que la caja esté encima de otros elementos */
 }
 
+/* Nueva regla para asegurar que la fila de botones esté debajo */
+.navbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px; /* Espacio para que no se solapen con la fila superior */
+}
 
 #editModal {
   display: none;
@@ -133,4 +141,16 @@ body {
 #editModal button:last-of-type {
   background-color: #f44336;
   color: white;
+}
+
+/* Botón de cerrar sesión */
+#sesion {
+  font-size: 16px;
+  position: absolute;
+  right: 5%;
+  top: 22%;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
