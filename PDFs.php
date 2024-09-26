@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// Verifica si el usuario ha iniciado sesión
+if (!isset($_SESSION['loggedIn'])) {
+    // Si no ha iniciado sesión, redirige al login
+    header('Location: login.html');
+    exit();
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -90,7 +99,7 @@ $result = $conn->query($sql);
   <meta name="description" content="Visualiza PDFs en el AGN. Accede y maneja documentos digitalizados de manera sencilla y eficiente con nuestras herramientas avanzadas. Creado por [Calvin Mena].">
   <meta name="keywords" content="AGN Visualizar PDFs, documentos digitalizados, herramientas avanzadas">
   <title>PDFs</title>
-  <link rel="stylesheet" href="CSS/Style.css" />
+  <link rel="stylesheet" href="CSS/Style.css"/>
    <!-- Bootstrap CSS -->
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- jQuery -->
@@ -99,22 +108,30 @@ $result = $conn->query($sql);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="icon" href="img/Logo-AGN.png" type="image/png" />
   <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    .content {
-        flex: 1;
-    }
-    footer {
-        background-color: #f1f1f1;
-        padding: 10px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            padding: 20px;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
+        }
   </style>
 </head>
 
@@ -140,61 +157,92 @@ $result = $conn->query($sql);
           }
       </script>
       <div class="container">
-        <h1>Lista de PDFs subidos</h1>
-        <ul>
+        <div class="pdf-list">
+            <h2>Lista de PDFs</h2>
             <?php
-            if ($result->num_rows > 0) {
+                if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo "<li>";
                     echo "<a href='".$row['file_path']."' target='_blank'>" . $row['file_name'] . "</a> ";
                     echo "<a href='javascript:void(0);' onclick='confirmDelete(".$row['id'].")'>Eliminar</a>";
                     echo "</li>";
-                }
-            } else {
-                echo "No hay PDFs subidos.";
-            }
+                    }
+                } else {
+                    echo "No hay PDFs subidos.";
+                    }
             ?>
-        </ul>
-        <?php
-        if ($message) {
-            echo "<p>" . $message . "</p>";
-        }
-        ?>
-        <form action="PDFs.php" method="post" enctype="multipart/form-data">
-            <label for="pdf">Selecciona el archivo PDF:</label>
-            <input type="file" name="pdf" id="pdf" accept="application/pdf" required>
-            <br><br>
-            <input type="submit" value="Subir PDF">
+             </ul>
+            <?php
+             if ($message) {
+                echo "<p>" . $message . "</p>";
+                }
+            ?>
+            <form action="PDFs.php" method="post" enctype="multipart/form-data">
+                <label for="pdf">Selecciona el archivo PDF:</label>
+                <input type="file" name="pdf" id="pdf" accept="application/pdf" required>
+                <br><br>
+                <input type="submit" value="Subir PDF">
+            </form>
+        </div>
+        <form id="memo" class="form" name="pdf" action="PDF_editable.php" method="POST">
+        <h2>Formulario editable</h2>
+              <div class="form-group">
+                  <label for="relativo" class="label">Codigo</label>
+                  <input type="text" class="input" name="relativo" id="relativo" required>
+              </div>
+              <div class="form-group">
+                  <label for="referencia" class="label">Referencia</label>
+                  <input type="text" class="input" name="refencia" id="referencia" required>
+              </div>
+              <div class="form-group">
+                  <label for="destinatario" class="label">Destinatario</label>
+                  <input type="text" class="input" name="destinatario" id="destinatario" required>
+              </div>
+              <div class="form-group">
+                  <label for="cargo1" class="label">cargo</label>
+                  <input type="text" class="input" name="cargo1" id="cargo1" required>
+              </div>
+              <div class="form-group">
+                  <label for="remitente" class="label">Remitente</label>
+                  <input type="text" class="input" name="remitente" id="remitente" required>
+              </div>
+              <div class="form-group">
+                  <label for="cargo2" class="label">cargo</label>
+                  <input type="text" class="input" name="cargo2" id="cargo2" required>
+              </div>
+              <div class="form-group">
+                  <label for="asunto" class="label">Asunto</label>
+                  <input type="text" class="input" name="asunto" id="asunto" required>
+              </div>
+              <div class="form-group">
+                  <button class="button" type="submit">Confirmar</button>
+              </div>
         </form>
-      </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="img/Logo 1.png" alt="Logo" class="img-fluid" style="max-width: 190px" />
-        </div>
-        <div class="col-md-3">
-          <h5>Contactos</h5>
-          <p>comunicaciones@cultura.gob.sv</p>
-          <p>Teléfono: +503 2221-8847</p>
-        </div>
-        <div class="col-md-6">
-          <h5>
-            <a href="https://maps.app.goo.gl/WAkw2KgrLVsAbbYG8" target="_blank" class="location-link">
-              <img src="img/logomapa.png" alt="Ubicación" class="location-logo" /></a>Ubicación y Referencia
-          </h5>
+        <div class="container">
+            <div class="row">
+            <div class="col-md-3">
+                <img src="img/Logo 1.png" alt="Logo" class="img-fluid" style="max-width: 190px" />
+            </div>
+            <div class="col-md-3">
+                <h5>Contactos</h5>
+                <p>comunicaciones@cultura.gob.sv</>
+                <p>Teléfono: +503 2221-8847</p>
+            </div>
+            <div class="col-md-6">
+                <h5>
+                <a href="https://maps.app.goo.gl/WAkw2KgrLVsAbbYG8" target="_blank" class="location-link">
+                <img src="img/logomapa.png" alt="Ubicación" class="location-logo" /></a>Ubicación y Referencia
+                </h5>
           <p>
             Archivo General de la Nación. <br />
             17 avenida Sur, Calle Ruben Dario #1003, Edificio Mercury. Esquina
             opuesta al fondo social para la vivienda, en frente de canchas de
             la Universidad Tecnologica.
           </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-  </div>
+            </div>
+    </footer>
 </body>
 </html>
 

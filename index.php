@@ -364,40 +364,7 @@ if (!isset($_SESSION['loggedIn'])) {
           <div id="response-message" class="mt-3"></div>
         </div>
       </div>
-
-      <div id="info-formularios 3" style="display:none">
-        <div class="text-center">
-          <form id="memo" class="form" name="pdf" action="PDF_editable.php" method="POST">
-              <div class="form-group">
-                  <label for="relativo" class="label">Codigo</label>
-                  <input type="text" class="input" name="relativo" id="relativo" required>
-              </div>
-              <div class="form-group">
-                  <label for="referencia" class="label">Referencia</label>
-                  <input type="text" class="input" name="refencia" id="referencia" required>
-              </div>
-              <div class="form-group">
-                  <label for="destinatario" class="label">Destinatario</label>
-                  <input type="text" class="input" name="destinatario" id="destinatario" required>
-              </div>
-              <div class="form-group">
-                  <label for="remitente" class="label">Remitente</label>
-                  <input type="text" class="input" name="remitente" id="remitente" required>
-              </div>
-              <div class="form-group">
-                  <label for="asunto" class="label">Asunto</label>
-                  <input type="text" class="input" name="asunto" id="asunto" required>
-              </div>
-              <div class="form-group">
-                  <label for="mensaje" class="label">Mensaje</label>
-                  <input type="text" class="input" name="mensaje" id="mensaje" required>
-              </div>
-              <div class="form-group">
-                  <button class="button" type="submit">Confirmar</button>
-              </div>
-          </form>
-        </div>
-      </div>
+  
       </div>
       <!-- Modal para editar detalles -->
       <div id="editModal" style="display:none;">
