@@ -63,7 +63,7 @@ $pdf->Ln(5);
 $pdf->SetLeftMargin(92);
 $pdf->setfont('MuseoSans_500.ttf', '', 12);
 $pdf->Ln(5);
-$pdf->MultiCell(0, 7, mb_convert_encoding('A.106.1.'.$relativo , 'ISO-8859-1', 'UTF-8'));
+$pdf->MultiCell(0, 7, mb_convert_encoding($relativo , 'ISO-8859-1', 'UTF-8'));
 $pdf->Ln(5);
 $pdf->MultiCell(0, 7, mb_convert_encoding('Ref. '.$referencia , 'ISO-8859-1', 'UTF-8'));
 
@@ -79,9 +79,6 @@ $pdf->Ln(8);
 $pdf->MultiCell(0, 7, mb_convert_encoding('Fecha:        '.$fecha. '.', 'ISO-8859-1', 'UTF-8'));
 $pdf->Ln(8);
 $pdf->MultiCell(0, 7, mb_convert_encoding('Asunto:         ' .$asunto, 'ISO-8859-1', 'UTF-8'));
-$pdf->Line(30, 230, 210-20, 230);
-$pdf->setfont('MuseoSans_500.ttf', '', 14);
-$pdf->SetLeftMargin(30);
 
 $pdf->Output();
 }

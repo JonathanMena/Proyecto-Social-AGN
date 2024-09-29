@@ -211,8 +211,8 @@ $result = $conn->query($sql);
                   <input type="text" class="input" name="cargo2" id="cargo2" required>
               </div>
               <div class="form-group">
-                  <label for="asunto" class="label">Asunto</label>
-                  <input type="text" class="input" name="asunto" id="asunto" required>
+                <label for="asunto" class="label">Asunto</label>
+                <textarea class="input" name="asunto" id="asunto" rows="4" cols="50" required></textarea>
               </div>
               <div class="form-group">
                   <button class="button" type="submit">Confirmar</button>
